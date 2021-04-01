@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function BookCard({ image, title, author, url }) {
   return (
@@ -11,9 +12,12 @@ export default function BookCard({ image, title, author, url }) {
           <div className="BookTitle">{title}</div>
         </div>
         <div className="Description">{author}</div>
-        <a className="Link" href={url}>
+        <Link
+          to={{ pathname: "/book", search: `?show=${url}` }}
+          className="Link"
+        >
           Learn more
-        </a>
+        </Link>
       </div>
     </div>
   );
