@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BookCard from "../components/BookCard";
 import SearchBar from "../components/SearchBar";
 import Books from "../data/books.js";
+import Header from "../components/Header";
 
 export default function HomeScreen() {
   const filterBooks = (item, query) => {
@@ -21,9 +22,17 @@ export default function HomeScreen() {
   const filteredBooks = filterBooks(Books, searchQuery);
 
   return (
-    <div>
+    <div className="container">
+      <Header />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          width: "100%",
+        }}
+      >
         {filteredBooks.map((item) => (
           <BookCard {...item} key={item.name} />
         ))}

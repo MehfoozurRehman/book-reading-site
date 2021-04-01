@@ -1,3 +1,8 @@
+html {
+  --primary: #1f0056;
+  --secondary: #f6f6f6;
+  --special: #4b00ce;
+}
 *,
 *::after,
 *::before {
@@ -7,6 +12,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
 }
 .visually-hidden {
   clip: rect(0 0 0 0);
@@ -17,41 +28,192 @@ body {
   white-space: nowrap;
   width: 1px;
 }
-
-.CardWrapper {
-  flex: 0 1 300px;
-  margin: 12px;
-  overflow: hidden;
-  padding: 16px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05), 0 0px 10px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
-  flex-wrap: wrap;
-  min-width: 300px;
-  max-width: 30%;
-}
-.Header {
+.container {
+  min-width: 1360px;
+  width: 100%;
+  max-width: 1360px;
+  padding: 1em;
   display: flex;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.nav {
+  padding: 1em 2.5em;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  width: 35%;
+}
+.nav-link {
+  font-size: 18px;
+  color: var(--secondary);
+}
+.nav-link:hover {
+  color: #5d00ff;
+}
+.nav-menu {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.search-form {
+  margin: 5em 0em;
+  width: 50%;
+  display: flex;
+}
+.search-field {
+  padding: 1.2em 1em;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 2px solid var(--special);
+  border-right: none;
+  background-color: #efefef;
+  font-size: 1em;
+  color: var(--primary);
+  outline: none;
+  width: 100%;
+}
+.search-field:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.search-field::placeholder {
+  color: var(--special);
+}
+.search-btn-text {
+  background-color: var(--special);
+  border: none;
+  padding: 0em 2.5em;
+  cursor: pointer;
+  outline: none;
+}
+.search-btn-text:hover {
+  background-color: #1f0056;
+}
+.search-btn-audio {
+  background-color: #5d00ff;
+  border: none;
+  padding: 0em 2em;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.search-btn-audio:hover {
+  background-color: var(--special);
+}
+.CardWrapper {
+  padding: 30px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+  min-width: 313px;
+  max-width: 32%;
+  background-color: var(--primary);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  height: 250px;
 }
 .ColImg {
-  width: 30%;
-  float: left;
-}
-.ColDetail {
-  width: 70%;
-  float: left;
+  margin-right: 30px;
+  max-width: 25%;
 }
 .Img {
-  height: 100px;
+  width: 100%;
+}
+.ColDetail {
+  flex: 1;
 }
 .BookTitle {
-  font-size: 20px;
+  font-size: 1.4em;
+  margin-bottom: 8px;
+  color: var(--secondary);
+  font-weight: bold;
 }
 .Description {
-  color: #757575;
-  font-size: 14px;
+  color: var(--secondary);
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+.Date {
+  font-size: 0.9em;
+  color: var(--secondary);
+  opacity: 0.5;
   margin-bottom: 10px;
 }
-.Link {
-  font-size: 14px;
+.Intro {
+  overflow: hidden;
+  height: 18.5%;
+  font-size: 0.9em;
+  color: var(--secondary);
+}
+
+@media (max-width: 1360px) {
+  .container {
+    min-width: 1200px;
+    width: 100%;
+    max-width: 1200px;
+  }
+}
+@media (max-width: 1200px) {
+  .container {
+    min-width: 1000px;
+    width: 100%;
+    max-width: 1000px;
+  }
+  .nav {
+    width: 50%;
+  }
+  .search-form {
+    width: 70%;
+  }
+  .CardWrapper {
+    min-width: 48%;
+  }
+}
+@media (max-width: 1000px) {
+  .container {
+    min-width: 800px;
+    width: 100%;
+    max-width: 800px;
+  }
+}
+@media (max-width: 800px) {
+  .container {
+    min-width: 600px;
+    width: 100%;
+    max-width: 600px;
+  }
+  .nav {
+    width: 70%;
+  }
+  .search-form {
+    width: 100%;
+  }
+  .CardWrapper {
+    min-width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+  .nav {
+    width: fit-content;
+    padding: 1em;
+  }
+  .nav-link {
+    display: none;
+  }
 }

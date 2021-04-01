@@ -1,24 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-export default function BookCard({ image, title, author, url }) {
+export default function BookCard({ image, title, author, url, date, intro }) {
   return (
-    <div className="CardWrapper">
+    <Link
+      to={{ pathname: "/book", search: `?show=${url}` }}
+      className="CardWrapper"
+    >
       <div className="ColImg">
         <img className="Img" src={image} alt={title} />
       </div>
       <div className="ColDetail">
-        <div className="Header">
-          <div className="BookTitle">{title}</div>
-        </div>
+        <div className="BookTitle">{title}</div>
         <div className="Description">{author}</div>
-        <Link
-          to={{ pathname: "/book", search: `?show=${url}` }}
-          className="Link"
-        >
-          Learn more
-        </Link>
+        <div className="Date">Published on {date}</div>
+        <div className="Intro">{intro}</div>
       </div>
-    </div>
+    </Link>
   );
 }
