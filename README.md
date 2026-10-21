@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Boook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React site that lists books, searches them by title or author, and plays an audio excerpt for each one.
 
-## Available Scripts
+**Status:** In progress. The list, search and detail pages work on local data, but the book text and audio are placeholders, the About, Contact and Donate links are not built, and nothing in the repo shows the Firebase Hosting setup is live.
 
-In the project directory, you can run:
+## The problem
 
-### `yarn start`
+A catalogue for reading books. The home page shows a searchable list of books, and each book has a detail view with a description and an audio player. The data is local and hand-written.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What it does
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Lists books from `src/data/books.js` with cover image, author, publish date and intro (`src/screens/HomeScreen.js`).
+- Searches by title or author using the `s` query parameter, both from the search box and from the URL.
+- Opens a book detail page at `/book?show=<value>`, which shows the description text and a playable audio excerpt.
+- Plays each excerpt with `react-h5-audio-player`.
+- Shows a header with the site logo and navigation.
 
-### `yarn test`
+## How it's built
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Create React App (react-scripts 4.0.3) with React 17 and react-router-dom 5 (`Switch` and `Route`).
+- Book data is kept as plain JavaScript modules (`src/data/book.js` and `src/data/books.js`). There is no backend.
+- Search and detail state are read from `window.location` on render, so each view can be linked directly by URL.
+- Firebase Hosting is configured in `firebase.json`: it serves `build/` and rewrites every route to `index.html` so client-side routes work.
+- Font Awesome font files are bundled in `public/fonts/`.
 
-### `yarn build`
+## Running it locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The repo includes a `pnpm-lock.yaml`, so use pnpm:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+pnpm install
+pnpm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For a production build, run `pnpm build`. Tests run with `pnpm test`, but the repo has no test files yet.
 
-### `yarn eject`
+## What's left
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The About and Contact header links point to routes that do not exist.
+- The Donate button has no link or handler.
+- Book content is placeholder: lorem ipsum text, a `url` value of `"ss"` in `books.js`, and a date of `"20/19/2009"`, which is not a valid date.
+- The detail page matches the `show` query against the book title, so a book's detail view depends on the title text and the placeholder `url` values.
+- No tests, and no backend.
